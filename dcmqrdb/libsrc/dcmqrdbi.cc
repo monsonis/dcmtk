@@ -3060,7 +3060,8 @@ OFCondition DcmQueryRetrieveIndexDatabaseHandle::storeRequest (
 
     free (pStudyDesc) ;
 
-    if (DB_IdxAdd (handle_, &i, &idxRec) == EC_Normal)
+    // Hacked - No queremos salvar la imagen en la base de datos de índices
+    if (true)
     {
         status->setStatus(STATUS_Success);
         DB_unlock();

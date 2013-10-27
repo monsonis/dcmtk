@@ -87,7 +87,7 @@ END_EXTERN_C
 static OFLogger dcmqrscpLogger = OFLog::getLogger("dcmtk.apps." OFFIS_CONSOLE_APPLICATION);
 
 static char rcsid[] = "$dcmtk: " OFFIS_CONSOLE_APPLICATION " v"
-  OFFIS_DCMTK_VERSION " " OFFIS_DCMTK_RELEASEDATE " $";
+  OFFIS_DCMTK_VERSION " (hacked by ActualMed) " OFFIS_DCMTK_RELEASEDATE " $";
 
 #define APPLICATIONTITLE "DCMQRSCP"
 
