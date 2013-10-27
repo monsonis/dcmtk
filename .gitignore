@@ -95,3 +95,6 @@ dcmwlm/wwwapps/preplock
 dcmwlm/wwwapps/readoviw
 dcmwlm/wwwapps/readwlst
 dcmwlm/wwwapps/writwlst
+
+#Build
+build
