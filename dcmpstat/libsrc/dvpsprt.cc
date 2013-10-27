@@ -882,7 +882,14 @@ void DVPSPrintSCP::filmBoxNCreate(DcmDataset *rqDataset, T_DIMSE_Message& rsp, D
         const char *aetitle = dviface.getTargetAETitle(cfgname);
         if (aetitle==NULL) aetitle = dviface.getNetworkAETitle(); // default if AETITLE is missing
         newSPrint->setDestination(aetitle);
-        newSPrint->setPrinterName(cfgname);
+
+        /************************/
+        /* Begin ActualMed Hack */
+        //newSPrint->setPrinterName(cfgname);
+        newSPrint->setPrinterName(assoc->params->DULparams.calledAPTitle);
+        /* End ActualMed Hack   */
+        /************************/
+
 
         OFBool usePLUTinFilmBox = OFFalse;
         OFBool usePLUTinFilmSession = OFFalse;
