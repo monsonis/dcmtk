@@ -478,6 +478,10 @@ static OFCondition DB_IdxAdd (DB_Private_Handle *phandle, int *idx, IdxRecord *i
 
     *idx = 0 ;
 
+    //
+    return EC_Normal;
+    //
+
     DB_lseek (phandle -> pidx, (long) SIZEOF_STUDYDESC, SEEK_SET) ;
     while (read (phandle -> pidx, (char *) &rec, SIZEOF_IDXRECORD) == SIZEOF_IDXRECORD) {
         if (rec. filename [0] == '\0')
@@ -508,6 +512,9 @@ static OFCondition DB_IdxAdd (DB_Private_Handle *phandle, int *idx, IdxRecord *i
 OFCondition DcmQueryRetrieveIndexDatabaseHandle::DB_StudyDescChange(StudyDescRecord *pStudyDesc)
 {
     OFCondition cond = EC_Normal;
+    //
+    return EC_Normal;
+    //
     DB_lseek (handle_ -> pidx, 0L, SEEK_SET) ;
     if (write (handle_ -> pidx, (char *) pStudyDesc, SIZEOF_STUDYDESC) != SIZEOF_STUDYDESC)
         cond = QR_EC_IndexDatabaseError;
@@ -578,7 +585,9 @@ OFCondition DcmQueryRetrieveIndexDatabaseHandle::DB_IdxRemove(int idx)
 {
     IdxRecord   rec ;
     OFCondition cond = EC_Normal;
-
+    //
+    return EC_Normal;
+    //
     DB_lseek (handle_ -> pidx, SIZEOF_STUDYDESC + (long)idx * SIZEOF_IDXRECORD, SEEK_SET) ;
     DB_IdxInitRecord (&rec, 0) ;
 
@@ -3060,8 +3069,7 @@ OFCondition DcmQueryRetrieveIndexDatabaseHandle::storeRequest (
 
     free (pStudyDesc) ;
 
-    // Hacked - No queremos salvar la imagen en la base de datos de índices
-    if (true)
+    if (DB_IdxAdd (handle_, &i, &idxRec) == EC_Normal)
     {
         status->setStatus(STATUS_Success);
         DB_unlock();
@@ -3402,6 +3410,10 @@ OFCondition DcmQueryRetrieveIndexDatabaseHandle::makeNewStoreFileName(
 
 OFCondition DcmQueryRetrieveIndexDatabaseHandle::instanceReviewed(int idx)
 {
+    //
+    return EC_Normal;
+    //
+
     // acquire shared lock and read record at index position
     OFCondition result = DB_lock(OFFalse);
     if (result.bad()) return result;
